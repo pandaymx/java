@@ -317,3 +317,353 @@ public class Demo04 {
 
 ```
 
+## 8.运算符和表达式
+
+​	运算符是对常量或者变量进行操作的符号
+
+​	比如： +  -  *  / 
+
+​	用运算符把常量或者变量连接起来的，符合Java语法的式子就是表达式
+
+​	a + b 这个整体就是表达式
+
+​	而其中+是算术运算符的一种，所以这个表达式也称之为算术表达式
+
+### 8.1 算术运算符
+
+分类：
+
+```txt
++ - * / %
+```
+
+运算特点：
+
+```txt
++ - * :跟数学中一样
+```
+
+```txt
+1.整数相除结果只能得到整除，如果结果想要是小数，必须要有小数参数
+2.小数直接参与运算，得到的结果有可能是不精确的
+```
+
+```txt
+%：取模、取余。
+   他做的也是除法运算，只不过获取的是余数而已
+```
+
+### 8.2数据类型转换
+
+#### 8.2.1 自动类型转换
+
+##### 概念：
+
+​	也叫自动类型提升
+
+​	就是把一个取值范围小的数据或者变量，赋值给另一个取值范围大的变量。此时不需要我们额外写代码单独实现，是程序自动帮我们完成的
+
+##### 提升规则：
+
+* 取值范围小的，和取值范围大的进行运算，小的会先提升为大的，再进行运算
+* byte、short、char三种类型的数据在运算的时候，都会直接先提升为int，然后再进行运算
+
+​	byte short int long float double 从小到大排序
+
+#### 8.2 强制转换
+
+##### 概念：
+
+​	如果要把一个取值范围大的数据或者变量赋值给另一个取值范围小的变量。是不允许直接操作
+
+​	如果一定要这么干，就需要加入强制转换
+
+##### 书写格式：
+
+​	目标数据类型 变量名 = （目标数据类型）被强转的数据
+
+简单理解：
+
+​	要转成什么类型的，那么就在小括号中写什么类型就可以了
+
+案例：
+
+```java
+public class Demo06 {
+    public static void main(String[] args) {
+        // 自动类型转换
+        double a = 10;
+        System.out.println(a);
+        // 强制类型转换
+        int b = (int) a;
+        System.out.println(b);
+    }
+}
+```
+
+注意点：
+
+​	强制转换有可能会导致精度丢失
+
+### 8.3字符串的+操作
+
+#### 核心技巧：
+
+* 当+操作中出现字符串时，此时就是字符串的连接符，会将前后的数据进行拼接，并产生一个新的字符串
+* 当连续进行+操作时，从左到右逐个执行的
+
+``` java
+public class Demo07 {
+    public static void main(String[] args) {
+        int a = 10;
+        // 10string
+        System.out.println(a+"string");
+        int b = 10;
+        // 20string 
+        System.out.println(a+b+"string");
+    }
+}
+```
+
+
+
+### 8.4字符的+操作
+
+#### 规则：
+
+​	当+操作中出现了字符，会拿着字符到计算机内置的ASCII码表中去查对应的数字，然后再进行计算
+
+``` java
+public class Demo08 {
+    public static void main(String[] args) {
+        char a = 97;
+        System.out.println(a);
+        // int和char的可以互相转换
+        System.out.println('a'+10);
+        char b = '我';
+        char c = '你';
+        int d ;
+        d = b+c;
+        System.out.println(d);
+    }
+}
+
+```
+
+数字和字符可以相互转换
+
+### 8.5自增自减运算符
+
+#### 分类：
+
+```txt
+++  自增运算符
+--  自减运算符
+```
+
+++：就是把变量里面的值+1
+
+--：就是把变量里面的值-1
+
+#### 使用方式：
+
+* 放在变量的前面，我们叫做先++。 比如：++a
+* 放在变量的后面，我们叫做后++。 比如：a++
+
+#### 注意点：
+
+​	不管是先++，还是后++。单独写在一行的时候，运算结果是一模一样的
+
+​	如果和其他一同运算，a++是先使用a的值再运算，++a是先算再用
+
+``` java
+public class Dem09 {
+    public static void main(String[] args) {
+        int a = 10;
+        // 10
+        System.out.println(a++);
+        // 12
+        System.out.println(++a);
+    }
+}
+```
+
+
+
+### 8.6 赋值运算符
+
+#### 分类：
+
+​	+=、-=、*=、/=、%= 、=
+
+#### 运算规则：
+
+​	就是把左边跟右边进行运算，把最终的结果赋值给左边，对右边没有任何影响
+
+#### 注意点：
+
+​	扩展的赋值运算符中隐层还包含了一个强制转换。
+
+以+=为例。
+
+a += b ;实际上相当于 a = (byte)(a + b);
+
+将注释中的c= c+d取消注释，会发现出错
+
+```java
+public class Demo10 {
+    public static void main(String[] args) {
+        int a = 20;
+        int b = 10;
+        a += b;
+        // 相当于a= a+b;
+        System.out.println(a);
+        byte c =20;
+        byte d = 10;
+        // c = c +d;
+        System.out.println(c);
+        c += d;
+        System.out.println(c);
+
+    }
+}
+```
+
+### 8.7关系运算符
+
+又叫比较运算符，其实就是拿着左边跟右边进行了判断而已。
+
+#### 分类：
+
+| 符号 | 解释                                                         |
+| ---- | ------------------------------------------------------------ |
+| ==   | 就是判断左边跟右边是否相等，如果成立就是true，如果不成立就是false |
+| !=   | 就是判断左边跟右边是否不相等，如果成立就是true，如果不成立就是false |
+| >    | 就是判断左边是否大于右边，如果成立就是true，如果不成立就是false |
+| >=   | 就是判断左边是否大于等于右边，如果成立就是true，如果不成立就是false |
+| <    | 就是判断左边是否小于右边，如果成立就是true，如果不成立就是false |
+| <=   | 就是判断左边是否小于等于右边，如果成立就是true，如果不成立就是false |
+
+#### 注意点：
+
+* 关系运算符最终的结果一定是布尔类型的。要么是true，要么是false
+* 在写==的时候，千万不要写成=
+
+```java
+public class Demo11 {
+    public static void main(String[] args) {
+        int a = 10;
+        int b =20;
+        System.out.println(a>b);
+        System.out.println(a>=b);
+        System.out.println(a<=b);
+        System.out.println(a<b);
+        System.out.println(a==b);
+        System.out.println(a!=b);
+    }
+}
+```
+
+
+
+### 8.8逻辑运算符
+
+#### & 和 | 的使用：
+
+&：逻辑与（而且）
+
+​	两边都为真，结果才是真，只要有一个为假，那么结果就是假。
+
+|：逻辑或（或者）
+
+​	两边都为假，结果才是假，只要有一个为真，那么结果就是真。
+
+#### ^（异或）的使用：
+
+计算规则：如果两边相同，结果为false，如果两边不同，结果为true
+
+#### !（取反）的使用：
+
+​	是取反，也叫做非。
+
+计算规则：false取反就是true，true取反就是false
+
+```java
+public class Demo12 {
+    public static void main(String[] args) {
+        // &都为真才为真
+        System.out.println(true&true);
+        System.out.println(true&false);
+        System.out.println(false&true);
+        System.out.println(false&false);
+        // |都为假才为假
+        System.out.println(true|true);
+        System.out.println(true|false);
+        System.out.println(false|true);
+        System.out.println(false|false);
+        // ^不进位加
+        System.out.println(true^true);
+        System.out.println(true^false);
+        System.out.println(false^true);
+        System.out.println(false^false);
+        // !取反
+        System.out.println(!(true));
+        System.out.println(!(false));
+    }
+}
+
+```
+
+
+
+### 8.9短路逻辑运算符
+
+分类：  &&   ||
+
+#### &&：
+
+​	运算结果跟&是一模一样的，只不过具有短路效果。
+
+#### ||：
+
+​	运算结果跟|是一模一样的。只不过具有短路效果。
+
+#### 逻辑核心：
+
+​	当左边不能确定整个表达式的结果，右边才会执行。
+
+​	当左边能确定整个表达式的结果，那么右边就不会执行了。从而提高了代码的运行效率。
+
+
+
+### 8.10 三元运算符
+
+又叫做：三元表达式或者问号冒号表达式。
+
+#### 格式：
+
+​	关系表达式 ？ 表达式1 ：表达式2 ；
+
+#### 计算规则：
+
+* 计算关系表达式的值。
+* 如果关系表达式的值为真，那么执行表达式1。
+* 如果关系表达式的值为假，那么执行表达式2。
+
+```java
+public class Demo13 {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 20;
+        int max = a > b ? a : b;
+        System.out.println(max);
+    }
+}
+```
+
+
+
+
+
+
+
