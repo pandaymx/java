@@ -1003,3 +1003,82 @@ public class Demo18 {
 
 
 
+
+
+### 9.8 无限循环
+
+#### 概念：
+
+​	又叫死循环。循环一直停不下来。
+
+#### for格式：
+
+```java
+for(;;){
+    System.out.println("循环执行一直在打印内容");
+}
+```
+
+解释：
+
+初始化语句可以空着不写，表示循环之前不定义任何的控制变量。
+
+条件判断语句可以空着不写，如果不写，默认表示true，循环一直进行。
+
+条件控制语句可以空着不写，表示每次循环体执行完毕后，控制变量不做任何变化。
+
+#### while格式：
+
+```java
+while(true){
+    System.out.println("循环执行一直在打印内容");
+}
+```
+
+解释：
+
+​	小括号里面就不能省略了，true一定要写出来，否则代码会报错。
+
+#### do...while格式：
+
+```java
+do{
+    System.out.println("循环执行一直在打印内容");
+}while(true);
+```
+
+解释：
+
+​	小括号里面就不能省略了，true一定要写出来，否则代码会报错。
+
+推荐使用while
+
+### 9.9条件控制语句
+
+* break
+* continue
+
+#### break:
+
+​	不能单独存在的。可以用在switch和循环中，表示结束，跳出的意思
+
+#### continue:
+
+​	表示：跳过本次循环，继续执行下次循环
+
+```java
+public class Demo19 {
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            if (i%2 ==0 ) {
+                continue;
+            }
+            if (i==9){
+                break;
+            }
+            System.out.println(i);
+        }
+    }
+}
+```
+
