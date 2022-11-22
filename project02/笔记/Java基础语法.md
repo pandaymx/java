@@ -270,7 +270,7 @@ public class Demo3{
 
 不管起什么名字，都要做到见名知意。
 
-## 6.2.3 常见命名
+### 6.2.3 常见命名
 
 类名：大驼峰
 
@@ -370,7 +370,7 @@ public class Demo04 {
 
 ​	byte short int long float double 从小到大排序
 
-#### 8.2 强制转换
+#### 8.2.2 强制转换
 
 ##### 概念：
 
@@ -622,23 +622,23 @@ public class Demo12 {
 
 #### &&：
 
-​	运算结果跟&是一模一样的，只不过具有短路效果。
+​	运算结果跟&是一模一样的，只不过具有短路效果
 
 #### ||：
 
-​	运算结果跟|是一模一样的。只不过具有短路效果。
+​	运算结果跟|是一模一样的。只不过具有短路效果
 
 #### 逻辑核心：
 
-​	当左边不能确定整个表达式的结果，右边才会执行。
+​	当左边不能确定整个表达式的结果，右边才会执行
 
-​	当左边能确定整个表达式的结果，那么右边就不会执行了。从而提高了代码的运行效率。
+​	当左边能确定个表达式的结果，那么右边就不会执行了。从而提高了代码的运行效率。
 
 
 
 ### 8.10 三元运算符
 
-又叫做：三元表达式或者问号冒号表达式。
+
 
 #### 格式：
 
@@ -646,9 +646,9 @@ public class Demo12 {
 
 #### 计算规则：
 
-* 计算关系表达式的值。
-* 如果关系表达式的值为真，那么执行表达式1。
-* 如果关系表达式的值为假，那么执行表达式2。
+* 计算关系表达式的值
+* 如果关系表达式的值为真，那么执行表达式1
+* 如果关系表达式的值为假，那么执行表达式2
 
 ```java
 public class Demo13 {
@@ -663,7 +663,343 @@ public class Demo13 {
 
 
 
+## 9. 流程控制
 
+在一个程序执行的过程中，各条语句的执行顺序对程序的结果是有直接影响的。所以，我们必须清楚每条语句的执行程。而且，很多时候要通过控制语句的执行顺序来实现我们想要的功能
+
+### 9.1 流程控制语句分类
+
+​	顺序结构
+
+​	判断和选择结构(if, switch)
+
+​	循环结构(for, while, do…while)
+
+
+
+### 9.2 if语句
+
+#### 9.2.1 if语句格式1
+
+```java
+格式：
+if (关系表达式) {
+    语句体;	
+}
+```
+
+执行流程：
+
+①首先计算关系表达式的值
+
+②如果关系表达式的值为true就执行语句体
+
+③如果关系表达式的值为false就不执行语句体
+
+④继续执行后面的语句内容
+
+![1545616039363](E:/BaiduNetdiskDownload/入门到起飞（上）/Java基础-资料/day04-判断和循环/笔记/img/1545616039363.png)
+
+
+
+1. 如果我们要对一个布尔类型的变量进行判断，不要写==，直接把变量写在小括号中即可
+
+2. 如果大括号中的语句体只有一条，那么大括号可以省略不写
+
+   如果大括号省略了，那么if只能控制距离他最近的那一条语句
+
+   
+
+#### 9.2.2 if语句格式2
+
+```java
+格式：
+if (关系表达式) {
+    语句体1;	
+} else {
+    语句体2;	
+}
+```
+
+执行流程：
+
+①首先计算关系表达式的值
+
+②如果关系表达式的值为true就执行语句体1
+
+③如果关系表达式的值为false就执行语句体2
+
+④继续执行后面的语句内容
+
+![1545616221283](E:/BaiduNetdiskDownload/入门到起飞（上）/Java基础-资料/day04-判断和循环/笔记/img/1545616221283.png)
+
+
+
+#### 9.2.3 if语句格式3
+
+```java
+格式：
+if (关系表达式1) {
+    语句体1;	
+} else if (关系表达式2) {
+    语句体2;	
+} 
+…
+else {
+    语句体n+1;
+}
+```
+
+执行流程：
+
+①首先计算关系表达式1的值
+
+②如果值为true就执行语句体1；如果值为false就计算关系表达式2的值
+
+③如果值为true就执行语句体2；如果值为false就计算关系表达式3的值
+
+④…
+
+⑤如果没有任何关系表达式为true，就执行语句体n+1。
+
+![1545616667104](E:/BaiduNetdiskDownload/入门到起飞（上）/Java基础-资料/day04-判断和循环/笔记/img/1545616667104.png)
+
+
+
+``` java
+public class Demo14 {
+    public static void main(String[] args) {
+        // if语句格式1
+        int a = 10;
+        int b = 10;
+        if (a>b){
+            System.out.println(a);
+        }
+        // if语句格式2
+        if (a>b){
+            System.out.println(a);
+        }else {
+            System.out.println(b);
+        }
+        // if语句格式.
+        if (a>b){
+            System.out.println(a);
+        } else if (a==b) {
+            System.out.println("两个数是相等的");
+        }else {
+            System.out.println(b);
+        }
+    }
+}
+
+```
+
+
+
+### 9.3 switch语句
+
+#### 9.3.1 格式
+
+```java
+switch (表达式) {
+	case 1:
+		语句体1;
+		break;
+	case 2:
+		语句体2;
+		break;
+	...
+	default:
+		语句体n+1;
+		break;
+}
+```
+
+#### 9.3.2 执行流程：
+
+- 首先计算出表达式的值 
+- 其次，和case依次比较，一旦有对应的值，就会执行相应的语句，在执行的过程中，遇到break就会结 束
+- 最后，如果所有的case都和表达式的值不匹配，就会执行default语句体部分，然后程序结束掉
+
+
+
+#### 9.3.3 switch的扩展知识：
+
+- default的位置和省略情况
+
+  default可以放在任意位置，也可以省略
+
+- case穿透
+
+  不写break会引发case穿透现象
+
+- switch在JDK12的新特性switch和if第三种格式各自的使用场景
+
+当我们需要对一个范围进行判断的时候，用if的第三种格式
+
+当我们把有限个数据列举出来，选择其中一个执行的时候，用switch语句
+
+```java
+import java.util.Scanner;
+
+public class Demo15 {
+    public static void main(String[] args) {
+        int i;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入星期数：");
+        i = sc.nextInt();
+        switch (i) {
+            case 1:
+                System.out.println("今天星期一");
+                break;
+            case 2:
+                System.out.println("今天星期二");
+                break;
+            case 3:
+                System.out.println("今天星期三");
+                break;
+            case 4:
+                System.out.println("今天星期四");
+                break;
+            case 5:
+                System.out.println("今天星期五");
+                break;
+            case 6:
+                System.out.println("今天星期六");
+                break;
+            case 7:
+                System.out.println("今天星期日");
+                break;
+            default:
+                System.out.println("你输错了");
+        }
+    }
+}
+
+```
+
+
+
+
+
+### 9.4 for循环结构
+
+​	循环语句可以在满足循环条件的情况下，反复执行某一段代码，这段被重复执行的代码被称为循环体语句，当反复 执行这个循环体时，需要在合适的时候把循环判断条件修改为false，从而结束循环，否则循环将一直执行下去，形成死循环。
+
+#### 9.4.1 for循环格式：
+
+```java
+for (初始化语句;条件判断语句;条件控制语句) {
+	循环体语句;
+}
+```
+
+**格式解释：**
+
+- 初始化语句：  用于表示循环开启时的起始状态，简单说就是循环开始的时候什么样
+- 条件判断语句：用于表示循环反复执行的条件，简单说就是判断循环是否能一直执行下去
+- 循环体语句：  用于表示循环反复执行的内容，简单说就是循环反复执行的事情
+- 条件控制语句：用于表示循环执行中每次变化的内容，简单说就是控制循环是否能执行下去
+
+**执行流程：**
+
+①执行初始化语句
+
+②执行条件判断语句，看其结果是true还是false
+
+​             如果是false，循环结束
+
+​             如果是true，继续执行
+
+③执行循环体语句
+
+④执行条件控制语句
+
+⑤回到②继续
+
+**for循环书写技巧：**
+
+- 确定循环的开始条件
+- 确定循环的结束条件
+- 确定循环要重复执行的代码
+
+
+
+```java
+public class Demo16 {
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("hello world");
+        }
+    }
+}
+```
+
+### 9.5 while循环
+
+#### 9.5.1 格式：
+
+```java
+初始化语句;
+while(条件判断语句){
+	循环体;
+	条件控制语句;
+}
+```
+
+
+
+```java
+public class Demo17 {
+    public static void main(String[] args) {
+        int i =0;
+        while (i<10){
+            System.out.println("hello world");
+            i++;
+        }
+    }
+}
+```
+
+### 9.6 do...while循环
+
+格式：
+
+```java
+初始化语句;
+do{
+    循环体;
+    条件控制语句;
+}while(条件判断语句);
+```
+
+特点：
+
+​	先执行，再判断
+
+```java
+public class Demo18 {
+    public static void main(String[] args) {
+        int i =0;
+        do {
+            System.out.println("hello world");
+            i++;
+        }while (i<10);
+    }
+}
+```
+
+
+
+### 9.7 三种格式的区别：
+
+​	for和while循环，是先判断，再执行
+
+​	do...while是先执行，再判断
+
+​	当知道循环次数或者循环范围的时候，用for循环
+
+​	当不知道循环次数，也不知道循环范围，但是知道循环的结束条件时，用while循环
 
 
 
