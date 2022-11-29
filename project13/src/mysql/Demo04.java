@@ -1,6 +1,6 @@
-package demo01;
+package mysql;
 
-public class Demo01 {
+public class Demo04 {
     public static void main(String[] args) {
 
     }
